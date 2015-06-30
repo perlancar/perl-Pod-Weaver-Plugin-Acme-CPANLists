@@ -38,7 +38,7 @@ sub _process_module {
             if $list->{description};
         $text .= "=over\n\n";
         for my $ent (@{ $list->{entries} }) {
-            $text .= "=item * L<https://metacpan.org/author/$ent->{author}".($ent->{summary} ? "|$ent->{summary}" : "|$ent->{author}").">\n\n";
+            $text .= "=item * L<".($ent->{summary} ? "$ent->{summary}|" : "$ent->{author}|")."https://metacpan.org/author/$ent->{author}>\n\n";
             $text .= Markdown::To::POD::markdown_to_pod($ent->{description})."\n\n"
                 if $ent->{description};
         }
@@ -54,7 +54,7 @@ sub _process_module {
             if $list->{description};
         $text .= "=over\n\n";
         for my $ent (@{ $list->{entries} }) {
-            $text .= "=item * L<$ent->{module}".($ent->{summary} ? "|$ent->{summary}" : "").">\n\n";
+            $text .= "=item * L<$ent->{module}>".($ent->{summary} ? " - $ent->{summary}" : "")."\n\n";
             $text .= Markdown::To::POD::markdown_to_pod($ent->{description})."\n\n"
                 if $ent->{description};
         }
