@@ -1,5 +1,10 @@
 Revision history for Pod-Weaver-Plugin-PERLANCAR-CPANLists
 
+0.02    2015-06-30 (PERLANCAR)
+
+	- Fix POD L<> syntax.
+
+
 0.01    2015-06-30 (PERLANCAR)
 
         - First release.
