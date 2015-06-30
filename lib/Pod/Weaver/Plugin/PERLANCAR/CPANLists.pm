@@ -48,11 +48,12 @@ sub _process_module {
             $text .= Markdown::To::POD::markdown_to_pod($ent->{description})."\n\n"
                 if $ent->{description};
         }
+        $text .= "=back\n\n";
         $self->add_text_to_section($document, $text, 'AUTHOR LISTS');
     }
 
-    my $author_lists = \@{"$package\::Author_Lists"};
-    for my $list (@$author_lists) {
+    my $module_lists = \@{"$package\::Module_Lists"};
+    for my $list (@$module_lists) {
         $found++;
         my $text = "=head2 $list->{summary}\n\n";
         $text .= Markdown::To::POD::markdown_to_pod($list->{description})."\n\n"
@@ -63,6 +64,7 @@ sub _process_module {
             $text .= Markdown::To::POD::markdown_to_pod($ent->{description})."\n\n"
                 if $ent->{description};
         }
+        $text .= "=back\n\n";
         $self->add_text_to_section($document, $text, 'MODULE LISTS');
     }
 
