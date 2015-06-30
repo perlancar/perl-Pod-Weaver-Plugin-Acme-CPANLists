@@ -10,12 +10,6 @@ with 'Pod::Weaver::Role::Section';
 
 use Markdown::To::POD;
 
-our $pa = Perinci::Access::Perl->new(
-    # we want to document the function's original properties (i.e. result_naked
-    # and args_as)
-    normalize_metadata => 0,
-);
-
 sub _process_module {
     no strict 'refs';
 
