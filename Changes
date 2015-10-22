@@ -1,4 +1,10 @@
-Revision history for Pod-Weaver-Plugin-PERLANCAR-CPANLists
+Revision history for Pod-Weaver-Plugin-Acme-CPANLists
+
+0.03    2015-10-22 (PERLANCAR) (unreleased)
+
+        - Rename module/dist from PWP:PERLANCAR::CPANLists to
+          PWP:Acme::CPANLists.
+
 
 0.02    2015-06-30 (PERLANCAR)
 

@@ -1,4 +1,4 @@
-package Pod::Weaver::Plugin::PERLANCAR::CPANLists;
+package Pod::Weaver::Plugin::Acme::CPANLists;
 
 # DATE
 # VERSION
@@ -81,7 +81,7 @@ sub weave_section {
 }
 
 1;
-# ABSTRACT: Generate POD for @Author_Lists and @Module_Lists
+# ABSTRACT: Create "AUTHOR LISTS" and "MODULE LISTS" POD sections from @Author_Lists and @Module_Lists
 
 =for Pod::Coverage weave_section
 
@@ -89,7 +89,7 @@ sub weave_section {
 
 In your C<weaver.ini>:
 
- [-PERLANCAR::CPANLists]
+ [-Acme::CPANLists]
 
 
 =head1 DESCRIPTION
