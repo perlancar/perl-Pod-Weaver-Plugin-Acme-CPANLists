@@ -8,7 +8,7 @@ use Moose;
 with 'Pod::Weaver::Role::AddTextToSection';
 with 'Pod::Weaver::Role::Section';
 
-use Markdown::To::POD;
+use Pod::From::Acme::CPANLists qw(gen_pod_from_acme_cpanlists);
 
 sub _process_module {
     no strict 'refs';
@@ -28,43 +28,20 @@ sub _process_module {
         require $package_pm;
     }
 
-    my $found;
+    my $res = gen_pod_from_acme_cpanlists(
+        module => $package,
+        _raw=>1,
+    );
 
-    my $author_lists = \@{"$package\::Author_Lists"};
-    for my $list (@$author_lists) {
-        $found++;
-        my $text = "=head2 $list->{summary}\n\n";
-        $text .= Markdown::To::POD::markdown_to_pod($list->{description})."\n\n"
-            if $list->{description};
-        $text .= "=over\n\n";
-        for my $ent (@{ $list->{entries} }) {
-            $text .= "=item * L<".($ent->{summary} ? "$ent->{summary}|" : "$ent->{author}|")."https://metacpan.org/author/$ent->{author}>\n\n";
-            $text .= Markdown::To::POD::markdown_to_pod($ent->{description})."\n\n"
-                if $ent->{description};
-        }
-        $text .= "=back\n\n";
-        $self->add_text_to_section($document, $text, 'AUTHOR LISTS');
-    }
+    my $found = $res->{author_lists} || $res->{module_lists};
+    return unless $found;
 
-    my $module_lists = \@{"$package\::Module_Lists"};
-    for my $list (@$module_lists) {
-        $found++;
-        my $text = "=head2 $list->{summary}\n\n";
-        $text .= Markdown::To::POD::markdown_to_pod($list->{description})."\n\n"
-            if $list->{description};
-        $text .= "=over\n\n";
-        for my $ent (@{ $list->{entries} }) {
-            $text .= "=item * L<$ent->{module}>".($ent->{summary} ? " - $ent->{summary}" : "")."\n\n";
-            $text .= Markdown::To::POD::markdown_to_pod($ent->{description})."\n\n"
-                if $ent->{description};
-        }
-        $text .= "=back\n\n";
-        $self->add_text_to_section($document, $text, 'MODULE LISTS');
-    }
+    $self->add_text_to_section($document, $res->{author_lists}, 'AUTHOR LISTS')
+        if $res->{author_lists};
+    $self->add_text_to_section($document, $res->{module_lists}, 'MODULE LISTS')
+        if $res->{module_lists};
 
-    if ($found) {
-        $self->log(["Generated POD for '%s'", $filename]);
-    }
+    $self->log(["Generated POD for '%s'", $filename]);
 }
 
 sub weave_section {
