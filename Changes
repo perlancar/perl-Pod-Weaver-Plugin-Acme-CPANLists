@@ -1,5 +1,11 @@
 Revision history for Pod-Weaver-Plugin-Acme-CPANLists
 
+0.04    2015-10-23 (PERLANCAR)
+
+	- Extract functionality to a separate module/dist:
+	  Pod-From-Acme-CPANLists.
+
+
 0.03    2015-10-22 (PERLANCAR)
 
         - Rename module/dist from PWP:PERLANCAR::CPANLists to
