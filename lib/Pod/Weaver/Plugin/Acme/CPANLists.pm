@@ -70,3 +70,5 @@ In your C<weaver.ini>:
 
 
 =head1 DESCRIPTION
+
+This plugin is used when building Acme::CPANLists::* distributions.
