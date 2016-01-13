@@ -1,5 +1,12 @@
 Revision history for Pod-Weaver-Plugin-Acme-CPANLists
 
+0.05    2016-01-13 (PERLANCAR)
+
+	- No functional changes.
+
+	- Tweak Abstract & Description.
+
+
 0.04    2015-10-23 (PERLANCAR)
 
 	- Extract functionality to a separate module/dist:
