@@ -58,7 +58,7 @@ sub weave_section {
 }
 
 1;
-# ABSTRACT: Create "AUTHOR LISTS" and "MODULE LISTS" POD sections from @Author_Lists and @Module_Lists
+# ABSTRACT: Plugin to use when building Acme::CPANLists::* distribution
 
 =for Pod::Coverage weave_section
 
@@ -71,4 +71,13 @@ In your C<weaver.ini>:
 
 =head1 DESCRIPTION
 
-This plugin is used when building Acme::CPANLists::* distributions.
+This plugin is used when building Acme::CPANLists::* distributions. It currently
+does the following:
+
+=over
+
+=item * Create "AUTHOR LISTS" POD section from C<@Author_Lists>
+
+=item * Create "MODULE LISTS" POD section from C<@Module_Lists>
+
+=back
