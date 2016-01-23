@@ -33,13 +33,26 @@ sub _process_module {
         _raw=>1,
     );
 
-    my $found = $res->{author_lists} || $res->{module_lists};
-    return unless $found;
+    $self->add_text_to_section(
+        $document, $res->{author_lists}, 'AUTHOR LISTS',
+        {after_section => ['DESCRIPTION']},
+    ) if $res->{author_lists};
 
-    $self->add_text_to_section($document, $res->{author_lists}, 'AUTHOR LISTS')
-        if $res->{author_lists};
-    $self->add_text_to_section($document, $res->{module_lists}, 'MODULE LISTS')
-        if $res->{module_lists};
+    $self->add_text_to_section(
+        $document, $res->{module_lists}, 'MODULE LISTS',
+        {after_section => ['AUTHOR LISTS', 'DESCRIPTION']},
+    ) if $res->{module_lists};
+
+    # XXX don't add if current See Also already mentions it
+    my @pod = (
+        "L<Acme::CPANLists> - about the Acme::CPANLists namespace\n\n",
+        "L<acme-cpanlists> - CLI tool to let you browse/view the lists\n\n",
+    );
+    $self->add_text_to_section(
+        $document, join('', @pod), 'SEE ALSO',
+        {after_section => ['DESCRIPTION']
+     },
+    );
 
     $self->log(["Generated POD for '%s'", $filename]);
 }
@@ -79,5 +92,10 @@ does the following:
 =item * Create "AUTHOR LISTS" POD section from C<@Author_Lists>
 
 =item * Create "MODULE LISTS" POD section from C<@Module_Lists>
+
+=item * Mention some modules in See Also section
+
+e.g. L<Acme::CPANLists> (the convention/standard), L<acme-cpanlists> (the CLI
+tool), etc.
 
 =back
