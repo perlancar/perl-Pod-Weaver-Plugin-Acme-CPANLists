@@ -98,11 +98,11 @@ does the following:
 e.g. L<Acme::CPANLists> (the convention/standard), L<acme-cpanlists> (the CLI
 tool), etc.
 
+=back
+
 
 =head1 SEE ALSO
 
 L<Acme::CPANLists>
 
 L<Dist::Zilla::Plugin::Acme::CPANLists>
-
-=back
