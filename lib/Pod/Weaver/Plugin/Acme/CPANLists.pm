@@ -77,7 +77,7 @@ sub weave_section {
 
 =head1 SYNOPSIS
 
-In your C<weaver.ini>:
+In your F<weaver.ini>:
 
  [-Acme::CPANLists]
 
@@ -97,5 +97,12 @@ does the following:
 
 e.g. L<Acme::CPANLists> (the convention/standard), L<acme-cpanlists> (the CLI
 tool), etc.
+
+
+=head1 SEE ALSO
+
+L<Acme::CPANLists>
+
+L<Dist::Zilla::Plugin::Acme::CPANLists>
 
 =back
